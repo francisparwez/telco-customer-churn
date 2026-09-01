@@ -1,14 +1,30 @@
 # Telco Customer Churn
 
-This project uses the Telco Customer Churn dataset as the starting point for the next data science task.
+This project looks at customer churn in a telecom dataset using Python and Pandas.
 
-The current commit only adds the raw dataset and the initial project README. The analysis and machine learning work will be added in later commits.
+The goal is to work through the data step by step, starting with a raw data audit and later moving into EDA, feature engineering, and baseline machine learning models.
+
+## Current Progress
+
+The first stage of the project is the raw data audit.
+
+The dataset was loaded with Pandas and checked for:
+
+- Missing values
+- Duplicate rows
+- Data type issues
+- Blank values
+- Numerical outliers
+
+One of the main issues found during the audit is that `TotalCharges` is stored as an object even though it contains numeric-looking values.
+
+The raw dataset has 7,043 rows and 21 columns.
 
 ## Dataset
 
-The dataset contains 7,043 customer records and 21 columns.
+The dataset contains customer information, account details, subscribed services, billing information, and the `Churn` target.
 
-The main fields cover:
+The main types of information include:
 
 - Customer information such as gender, senior citizen status, partner, and dependents
 - Account information such as tenure, contract type, payment method, and paperless billing
@@ -16,7 +32,7 @@ The main fields cover:
 - Billing information including monthly charges and total charges
 - `Churn`, which is the target column for the later modelling work
 
-The dataset file is:
+The raw dataset is stored at:
 
 ```text
 dataset/telco_customer_churn.csv
@@ -31,9 +47,9 @@ The next stages of the project will cover:
 - Exploring churn patterns with visualizations
 - Creating new features that may help explain customer churn
 - Comparing baseline classification models
-- Summarising the main findings as business recommendations
+- Summarizing the main findings as business recommendations
 
-## Current Repository Structure
+## Project Structure
 
 ```text
 telco-customer-churn/
@@ -41,14 +57,17 @@ telco-customer-churn/
 ├── dataset/
 │   └── telco_customer_churn.csv
 │
-└── README.md
+├── Telco_Churn.ipynb
+├── README.md
+├── SUMMARY.md
+└── requirements.txt
 ```
 
 More files will be added as the project progresses.
 
 ## Tools
 
-The project will use Python, Pandas, NumPy, Matplotlib, Seaborn, and scikit-learn.
+The project uses Python, Pandas, NumPy, Matplotlib, Seaborn, scikit-learn, and Jupyter.
 
 ## Dataset Note
 
