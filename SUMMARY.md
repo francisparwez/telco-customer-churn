@@ -53,8 +53,25 @@ Potential outliers were checked using the IQR method for the numerical columns.
 
 The values were not removed during the audit because unusual values may represent genuine customers.
 
+## EDA Completed
+
+The main churn patterns were explored using Matplotlib, Seaborn, and Pandas.
+
+The analysis looked at:
+
+- Overall churn distribution
+- Tenure distribution
+- Monthly and total charges
+- Contract type
+- Churn rate by contract type
+- Churn rate by tenure group
+- Churn rate by internet service
+- Churn rate by TechSupport
+- Monthly charges by churn
+- Tenure and monthly charges
+
+Five main business findings were documented from the visual analysis.
+
 ## Next Step
 
-The next stage is exploratory data analysis.
-
-After that, the project will move into feature engineering, baseline modelling, and business recommendations.
+The next stage will focus on feature engineering.

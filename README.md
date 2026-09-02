@@ -33,6 +33,8 @@ The data was then cleaned and prepared for machine learning by:
 - Scaling numerical variables
 - Fitting the preprocessing steps on the training data only
 
+The EDA stage is now complete. The main patterns examined were churn by contract type, tenure, internet service, TechSupport, and monthly charges.
+
 ## Dataset
 
 The dataset contains customer information, account details, subscribed services, billing information, and the `Churn` target.
@@ -51,11 +53,62 @@ The raw dataset is stored at:
 dataset/telco_customer_churn.csv
 ```
 
+## Visuals
+
+The main plots from the EDA are included below.
+
+### Customer Churn
+
+![Customer Churn](images/1_customer_churn.png)
+
+### Customer Tenure
+
+![Customer Tenure](images/2_customer_tenure.png)
+
+### Monthly Charges
+
+![Monthly Charges](images/3_monthly_charges.png)
+
+### Total Charges
+
+![Total Charges](images/4_total_charges.png)
+
+### Contract Type
+
+![Contract Type](images/5_contract_type.png)
+
+### Churn by Contract Type
+
+![Churn by Contract Type](images/6_churn_by_contract_type.png)
+
+### Churn Rate by Contract Type
+
+![Churn Rate by Contract Type](images/7_churn_rate_by_contract_type.png)
+
+### Churn Rate by Tenure Group
+
+![Churn Rate by Tenure Group](images/8_churn_rate_by_tenure_group.png)
+
+### Churn Rate by Internet Service
+
+![Churn Rate by Internet Service](images/9_churn_rate_by_internet_service.png)
+
+### Churn Rate by Tech Support
+
+![Churn Rate by Tech Support](images/10_churn_rate_by_tech_support.png)
+
+### Monthly Charges by Churn
+
+![Monthly Charges by Churn](images/11_monthly_charges_by_churn.png)
+
+### Tenure vs Monthly Charges
+
+![Tenure vs Monthly Charges](images/12_tenure_vs_monthly_charges.png)
+
 ## Project Plan
 
 The next stages of the project will cover:
 
-- Exploring churn patterns with visualizations
 - Creating new features that may help explain customer churn
 - Comparing baseline classification models
 - Summarizing the main findings as business recommendations
@@ -67,6 +120,20 @@ telco-customer-churn/
 │
 ├── dataset/
 │   └── telco_customer_churn.csv
+│
+├── images/
+│   ├── 1_customer_churn.png
+│   ├── 2_customer_tenure.png
+│   ├── 3_monthly_charges.png
+│   ├── 4_total_charges.png
+│   ├── 5_contract_type.png
+│   ├── 6_churn_by_contract_type.png
+│   ├── 7_churn_rate_by_contract_type.png
+│   ├── 8_churn_rate_by_tenure_group.png
+│   ├── 9_churn_rate_by_internet_service.png
+│   ├── 10_churn_rate_by_tech_support.png
+│   ├── 11_monthly_charges_by_churn.png
+│   └── 12_tenure_vs_monthly_charges.png
 │
 ├── Telco_Churn.ipynb
 ├── README.md
