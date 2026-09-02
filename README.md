@@ -2,13 +2,13 @@
 
 This project looks at customer churn in a telecom dataset using Python and Pandas.
 
-The goal is to work through the data step by step, starting with a raw data audit and later moving into EDA, feature engineering, and baseline machine learning models.
+The goal is to work through the data step by step, starting with a raw data audit, then cleaning and preprocessing the data before moving into EDA, feature engineering, and baseline machine learning models.
 
 ## Current Progress
 
-The first stage of the project is the raw data audit.
+The raw data audit and cleaning/preprocessing stages are complete.
 
-The dataset was loaded with Pandas and checked for:
+The audit checked for:
 
 - Missing values
 - Duplicate rows
@@ -16,9 +16,22 @@ The dataset was loaded with Pandas and checked for:
 - Blank values
 - Numerical outliers
 
-One of the main issues found during the audit is that `TotalCharges` is stored as an object even though it contains numeric-looking values.
+One of the main issues found was that `TotalCharges` was stored as an object even though it contained numeric-looking values.
 
-The raw dataset has 7,043 rows and 21 columns.
+The data was then cleaned and prepared for machine learning by:
+
+- Converting `TotalCharges` to numeric
+- Handling the blank `TotalCharges` values
+- Checking the cleaned data for missing values
+- Removing `customerID` from the model features
+- Separating `Churn` as the target
+- Converting `Churn` to 0 and 1
+- Splitting the data into training and test sets
+- Using stratification to keep the churn proportions similar
+- Imputing missing numerical and categorical values
+- One-hot encoding categorical variables
+- Scaling numerical variables
+- Fitting the preprocessing steps on the training data only
 
 ## Dataset
 
@@ -42,8 +55,6 @@ dataset/telco_customer_churn.csv
 
 The next stages of the project will cover:
 
-- Checking the raw data for missing values, duplicates, type issues, and outliers
-- Cleaning and preprocessing the data
 - Exploring churn patterns with visualizations
 - Creating new features that may help explain customer churn
 - Comparing baseline classification models
@@ -71,4 +82,4 @@ The project uses Python, Pandas, NumPy, Matplotlib, Seaborn, scikit-learn, and J
 
 ## Dataset Note
 
-The raw dataset is being kept in its original form at this stage. Cleaning, feature engineering, and modelling will be handled in the later project steps.
+The raw dataset is kept in its original form. Cleaning and preprocessing are done on a working copy in the notebook.

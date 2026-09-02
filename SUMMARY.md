@@ -2,7 +2,7 @@
 
 ## Current Stage
 
-The project is currently at the raw data audit stage.
+The raw data audit and cleaning/preprocessing stages are complete
 
 ## Dataset
 
@@ -30,9 +30,22 @@ The following checks were performed:
 
 `TotalCharges` is stored as an object even though it contains numeric-looking values. Blank strings were found in this column and were not detected by the initial `isnull()` check.
 
-The column was investigated using numeric conversion to identify values that could not be converted.
+The column was investigated using numeric conversion before cleaning.
 
-The raw data has not been cleaned yet.
+## Cleaning and Preprocessing Completed
+
+The data was prepared for the later machine learning stages.
+
+- `TotalCharges` was converted to numeric.
+- The blank `TotalCharges` values were handled after checking the affected records.
+- The cleaned data was checked again for missing values.
+- `customerID` was removed from the model features.
+- `Churn` was separated as the target and converted to 0/1.
+- The data was split into training and test sets using stratification.
+- Numerical features were handled with median imputation and scaling.
+- Categorical features were handled with most-frequent imputation and one-hot encoding.
+- The preprocessing steps were fitted on the training data only.
+- The fitted preprocessing was then applied to the test data.
 
 ## Outlier Check
 
@@ -42,6 +55,6 @@ The values were not removed during the audit because unusual values may represen
 
 ## Next Step
 
-The next stage will focus on cleaning and preprocessing the data.
+The next stage is exploratory data analysis.
 
-After that, the project will move into exploratory data analysis, feature engineering, and baseline modelling.
+After that, the project will move into feature engineering, baseline modelling, and business recommendations.
