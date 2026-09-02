@@ -2,7 +2,7 @@
 
 ## Current Stage
 
-The raw data audit and cleaning/preprocessing stages are complete
+The raw data audit, cleaning/preprocessing, EDA, and feature engineering stages are complete.
 
 ## Dataset
 
@@ -72,6 +72,19 @@ The analysis looked at:
 
 Five main business findings were documented from the visual analysis.
 
+## Feature Engineering Completed
+
+Six new features were created from the existing customer data:
+
+- `tenure_group` — groups customers by tenure in months
+- `avg_monthly_spend` — average historical monthly charge over the recorded tenure
+- `service_count` — number of subscribed services
+- `security_support_count` — number of security and support services
+- `streaming_services_count` — number of streaming services
+- `is_month_to_month` — flags customers with a month-to-month contract
+
+The new features were checked for data types, summary statistics, and missing values. No missing values were found in the new feature columns.
+
 ## Next Step
 
-The next stage will focus on feature engineering.
+The next stage is to check how the engineered features relate to churn, then rebuild the train/test preprocessing so the new features are included before moving into model training.

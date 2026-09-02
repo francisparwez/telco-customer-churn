@@ -2,11 +2,11 @@
 
 This project looks at customer churn in a telecom dataset using Python and Pandas.
 
-The goal is to work through the data step by step, starting with a raw data audit, then cleaning and preprocessing the data before moving into EDA, feature engineering, and baseline machine learning models.
+The goal is to work through the data step by step, starting with a raw data audit, then cleaning and preprocessing the data, exploring churn patterns, creating useful features, and finally comparing baseline machine learning models.
 
 ## Current Progress
 
-The raw data audit and cleaning/preprocessing stages are complete.
+The raw data audit, cleaning/preprocessing, EDA, and feature engineering stages are complete.
 
 The audit checked for:
 
@@ -16,9 +16,9 @@ The audit checked for:
 - Blank values
 - Numerical outliers
 
-One of the main issues found was that `TotalCharges` was stored as an object even though it contained numeric-looking values.
+One of the main issues found was that `TotalCharges` was stored as an object even though it contained numeric-looking values. Blank values were also found in this column.
 
-The data was then cleaned and prepared for machine learning by:
+The data was cleaned and prepared for machine learning by:
 
 - Converting `TotalCharges` to numeric
 - Handling the blank `TotalCharges` values
@@ -33,7 +33,18 @@ The data was then cleaned and prepared for machine learning by:
 - Scaling numerical variables
 - Fitting the preprocessing steps on the training data only
 
-The EDA stage is now complete. The main patterns examined were churn by contract type, tenure, internet service, TechSupport, and monthly charges.
+The EDA stage looked at overall churn, tenure, charges, contract type, internet service, TechSupport, and the relationship between monthly charges and churn.
+
+Feature engineering has also been completed. Six new features were created from the existing customer data:
+
+- `tenure_group`
+- `avg_monthly_spend`
+- `service_count`
+- `security_support_count`
+- `streaming_services_count`
+- `is_month_to_month`
+
+These features were created to make tenure, spending, service usage, and contract type easier to use and compare in the later modelling stage.
 
 ## Dataset
 
@@ -105,13 +116,28 @@ The main plots from the EDA are included below.
 
 ![Tenure vs Monthly Charges](images/12_tenure_vs_monthly_charges.png)
 
+## Feature Engineering
+
+The new features were kept fairly simple and were based on columns already in the dataset.
+
+| Feature                    | What it represents                                         |
+| -------------------------- | ---------------------------------------------------------- |
+| `tenure_group`             | Customer tenure grouped into ranges                        |
+| `avg_monthly_spend`        | Average historical monthly charge over the recorded tenure |
+| `service_count`            | Number of subscribed services                              |
+| `security_support_count`   | Number of security and support services                    |
+| `streaming_services_count` | Number of streaming services                               |
+| `is_month_to_month`        | Whether the customer has a month-to-month contract         |
+
 ## Project Plan
 
 The next stages of the project will cover:
 
-- Creating new features that may help explain customer churn
-- Comparing baseline classification models
-- Summarizing the main findings as business recommendations
+- Checking how the new features relate to churn
+- Rebuilding the train/test preprocessing with the engineered features
+- Training and comparing Logistic Regression and Random Forest
+- Evaluating the models using precision, recall, F1-score, and ROC-AUC
+- Writing the main business findings and recommendations
 
 ## Project Structure
 
@@ -149,4 +175,4 @@ The project uses Python, Pandas, NumPy, Matplotlib, Seaborn, scikit-learn, and J
 
 ## Dataset Note
 
-The raw dataset is kept in its original form. Cleaning and preprocessing are done on a working copy in the notebook.
+The raw dataset is kept in its original form. Cleaning, preprocessing, and feature engineering are done on a working copy in the notebook.
