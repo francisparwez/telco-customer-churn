@@ -85,6 +85,32 @@ Six new features were created from the existing customer data:
 
 The new features were checked for data types, summary statistics, and missing values. No missing values were found in the new feature columns.
 
+## Modeling Completed
+
+Two baseline classification models were trained and compared:
+
+- Logistic Regression
+- Random Forest
+
+The data was split into training and test sets using stratification.
+
+Preprocessing was kept inside the model pipelines so that it was fitted only on the training data during cross-validation.
+
+Five-fold stratified cross-validation was used.
+
+The models were evaluated using precision, recall, F1-score, and ROC-AUC.
+
+### Test Set Results
+
+| Model               | Precision | Recall |     F1 | ROC-AUC |
+| ------------------- | --------: | -----: | -----: | ------: |
+| Logistic Regression |    0.6532 | 0.5187 | 0.5782 |  0.8421 |
+| Random Forest       |    0.6109 | 0.4786 | 0.5367 |  0.8203 |
+
+Logistic Regression performed better than Random Forest across all four metrics on the test set.
+
+The models were used as baseline models, so no extensive hyperparameter tuning was done.
+
 ## Next Step
 
-The next stage is to check how the engineered features relate to churn, then rebuild the train/test preprocessing so the new features are included before moving into model training.
+The next stage is to review the model results and turn the main findings into business recommendations.

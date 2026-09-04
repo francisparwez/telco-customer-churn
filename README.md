@@ -6,7 +6,7 @@ The goal is to work through the data step by step, starting with a raw data audi
 
 ## Current Progress
 
-The raw data audit, cleaning/preprocessing, EDA, and feature engineering stages are complete.
+The raw data audit, cleaning/preprocessing, EDA, feature engineering, and baseline modeling stages are complete.
 
 The audit checked for:
 
@@ -129,15 +129,44 @@ The new features were kept fairly simple and were based on columns already in th
 | `streaming_services_count` | Number of streaming services                               |
 | `is_month_to_month`        | Whether the customer has a month-to-month contract         |
 
+## Modeling
+
+Two baseline classification models were trained and compared:
+
+- Logistic Regression
+- Random Forest
+
+The data was split into training and test sets using stratification. Preprocessing was kept inside the model pipelines so that it was fitted only on the training data during cross-validation.
+
+Five-fold stratified cross-validation was used to compare the models.
+
+The models were evaluated using precision, recall, F1-score, and ROC-AUC.
+
+### Cross-Validation Results
+
+| Model               | Precision | Recall |     F1 | ROC-AUC |
+| ------------------- | --------: | -----: | -----: | ------: |
+| Logistic Regression |    0.6664 | 0.5365 | 0.5938 |  0.8460 |
+| Random Forest       |    0.6377 | 0.4870 | 0.5519 |  0.8269 |
+
+### Test Set Results
+
+| Model               | Precision | Recall |     F1 | ROC-AUC |
+| ------------------- | --------: | -----: | -----: | ------: |
+| Logistic Regression |    0.6532 | 0.5187 | 0.5782 |  0.8421 |
+| Random Forest       |    0.6109 | 0.4786 | 0.5367 |  0.8203 |
+
+Logistic Regression performed better than Random Forest across all four metrics on the test set. It was therefore the stronger baseline model for this project.
+
+The models were kept as baseline models, so no extensive hyperparameter tuning was done.
+
 ## Project Plan
 
 The next stages of the project will cover:
 
-- Checking how the new features relate to churn
-- Rebuilding the train/test preprocessing with the engineered features
-- Training and comparing Logistic Regression and Random Forest
-- Evaluating the models using precision, recall, F1-score, and ROC-AUC
+- Reviewing the model results
 - Writing the main business findings and recommendations
+- Finalizing the project documentation
 
 ## Project Structure
 
