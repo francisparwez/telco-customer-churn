@@ -4,6 +4,31 @@ This project looks at customer churn in a telecom dataset using Python and Panda
 
 The goal is to work through the data step by step, starting with a raw data audit, then cleaning and preprocessing the data, exploring churn patterns, creating useful features, and finally comparing baseline machine learning models.
 
+## Setup
+
+Clone the repository and install the required packages:
+
+```bash
+git clone https://github.com/francisparwez/telco-customer-churn
+cd telco-customer-churn
+pip install -r requirements.txt
+```
+
+## Methodology
+
+The project was completed in the following steps:
+
+1. Loaded and audited the raw dataset.
+2. Cleaned data type and missing value issues.
+3. Split the data into training and test sets using stratification.
+4. Built preprocessing for numerical and categorical features.
+5. Explored churn patterns using EDA.
+6. Created six new features related to tenure, spending, services, and contracts.
+7. Trained Logistic Regression and Random Forest baseline models.
+8. Used five-fold stratified cross-validation.
+9. Evaluated the models using precision, recall, F1-score, and ROC-AUC.
+10. Used the findings to make business recommendations.
+
 ## Current Progress
 
 The raw data audit, cleaning/preprocessing, EDA, feature engineering, and baseline modeling stages are complete.
@@ -56,7 +81,7 @@ The main types of information include:
 - Account information such as tenure, contract type, payment method, and paperless billing
 - Services such as phone service, internet service, online security, online backup, and tech support
 - Billing information including monthly charges and total charges
-- `Churn`, which is the target column for the later modelling work
+- `Churn`, which is the target column for the classification models
 
 The raw dataset is stored at:
 
@@ -160,13 +185,32 @@ Logistic Regression performed better than Random Forest across all four metrics 
 
 The models were kept as baseline models, so no extensive hyperparameter tuning was done.
 
-## Project Plan
+## Top 3 Recommendations
 
-The next stages of the project will cover:
+### 1. Encourage Longer Contracts
 
-- Reviewing the model results
-- Writing the main business findings and recommendations
-- Finalizing the project documentation
+Month-to-month customers showed much higher churn. The company should test incentives that encourage customers to move to longer-term contracts.
+
+### 2. Improve the First-Year Customer Experience
+
+Customers with shorter tenure showed higher churn. Better onboarding and early customer support could help reduce cancellations.
+
+### 3. Review High-Risk Service Groups
+
+Fiber optic customers and customers without TechSupport showed higher churn rates. These groups should be monitored more closely and tested with targeted support or retention offers.
+
+## Project Status
+
+The main stages of the project are complete:
+
+- Data audit
+- Data cleaning and preprocessing
+- EDA
+- Feature engineering
+- Baseline model training
+- Model evaluation
+- Business recommendations
+- Project documentation
 
 ## Project Structure
 
@@ -196,7 +240,7 @@ telco-customer-churn/
 └── requirements.txt
 ```
 
-More files will be added as the project progresses.
+The repository contains the files used for the completed analysis.
 
 ## Tools
 
@@ -204,4 +248,4 @@ The project uses Python, Pandas, NumPy, Matplotlib, Seaborn, scikit-learn, and J
 
 ## Dataset Note
 
-The raw dataset is kept in its original form. Cleaning, preprocessing, and feature engineering are done on a working copy in the notebook.
+The raw dataset is kept in its original form. Cleaning, preprocessing, feature engineering, and modeling are done in the notebook using a working copy of the data.

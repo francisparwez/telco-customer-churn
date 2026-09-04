@@ -1,8 +1,8 @@
 # Telco Customer Churn — Project Summary
 
-## Current Stage
+## Project Overview
 
-The raw data audit, cleaning/preprocessing, EDA, and feature engineering stages are complete.
+The raw data audit, cleaning/preprocessing, EDA, feature engineering, baseline modeling, and business recommendations were completed as part of the project.
 
 ## Dataset
 
@@ -111,6 +111,24 @@ Logistic Regression performed better than Random Forest across all four metrics 
 
 The models were used as baseline models, so no extensive hyperparameter tuning was done.
 
-## Next Step
+## Business Recommendations
 
-The next stage is to review the model results and turn the main findings into business recommendations.
+Three main recommendations were identified from the analysis:
+
+1. Encourage month-to-month customers to move to longer contracts.
+2. Improve onboarding and support for newer customers.
+3. Monitor high-risk service groups such as Fiber optic customers and customers without TechSupport.
+
+These recommendations are based on the EDA findings and baseline model results.
+
+## Project Status
+
+The main analysis stages are complete:
+
+- Data audit
+- Data cleaning and preprocessing
+- EDA
+- Feature engineering
+- Baseline model training
+- Model evaluation
+- Business recommendations
