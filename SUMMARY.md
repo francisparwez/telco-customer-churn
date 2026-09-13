@@ -121,6 +121,44 @@ Three main recommendations were identified from the analysis:
 
 These recommendations are based on the EDA findings and baseline model results.
 
+## Adaptive Project — Handling Imbalanced Data & Driving Retention Decisions
+
+### Part 01 — Strengthen Churn Analysis
+
+**Status: ✅ Complete**
+
+The first stage of the adaptive project focused on the class imbalance problem and a deeper review of churn patterns.
+
+The dataset contains 7,043 customers and 1,869 churned customers, giving a churn rate of approximately 26.54%.
+
+A majority-class baseline that predicts every customer as `No Churn` achieves approximately 73.46% accuracy while detecting no churned customers. This shows why accuracy alone is not suitable for the new modelling task.
+
+The analysis revisited churn rates across:
+
+- Contract type
+- Tenure groups
+- Monthly charge groups
+- TechSupport
+- Customer characteristics
+
+The strongest differences were found across contract type and tenure.
+
+Month-to-month customers had a churn rate of approximately 42.71%, compared with 11.27% for one-year contracts and 2.83% for two-year contracts.
+
+Customers with 0-12 months of tenure had a churn rate of approximately 47.44%, compared with approximately 9.51% for customers with 49-72 months.
+
+The `TotalCharges` data quality issue was also reconfirmed. Eleven blank values cannot be converted to numeric values, and all affected records have zero tenure.
+
+The results from this stage will guide the class imbalance strategy and model evaluation in the next stage.
+
+### Current Adaptive Project Progress
+
+1. Strengthen Churn Analysis — ✅ Complete
+2. Leakage-Safe Imbalanced Classification Pipeline — Planned
+3. Model Comparison & Hyperparameter Tuning — Planned
+4. Threshold Tuning & Model Explanation — Planned
+5. Retention Strategy & Executive Report — Planned
+
 ## Project Status
 
 The main analysis stages are complete:

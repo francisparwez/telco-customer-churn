@@ -199,6 +199,44 @@ Customers with shorter tenure showed higher churn. Better onboarding and early c
 
 Fiber optic customers and customers without TechSupport showed higher churn rates. These groups should be monitored more closely and tested with targeted support or retention offers.
 
+## Adaptive Project — Handling Imbalanced Data & Driving Retention Decisions
+
+The original Telco Customer Churn project established the data audit, cleaning, EDA, feature engineering, and baseline classification workflow.
+
+The adaptive phase builds on that work and focuses on improving churn prediction for the imbalanced target and turning the model into a more useful retention decision tool.
+
+### Part 01 — Strengthen Churn Analysis
+
+✅ Complete
+
+This stage revisited the churn distribution, class imbalance, important churn patterns, and data quality issues before advanced model development.
+
+The dataset contains 7,043 customers and the churn rate is approximately 26.54%.
+
+A model that predicts every customer as `No Churn` would achieve approximately 73.46% accuracy while detecting no churned customers. This demonstrates why accuracy alone is not suitable for this problem.
+
+The strongest churn differences were found across contract type and tenure. Month-to-month customers had a churn rate of approximately 42.71%, while two-year customers had a churn rate of approximately 2.83%.
+
+Customers with 0-12 months of tenure had a churn rate of approximately 47.44%, compared with approximately 9.51% for customers with 49-72 months of tenure.
+
+The `TotalCharges` issue was also confirmed. The raw column contains 11 blank values that cannot be converted to numeric values. These records have zero tenure and will continue to be handled through the existing preprocessing pipeline.
+
+The new phase will use these findings to guide class imbalance handling, model comparison, threshold tuning, and retention decisions.
+
+### Part 01 Visualizations
+
+![Churn Class Imbalance](images/13_churn_class_imbalance.png)
+
+![Churn Class Percentage](images/14_churn_class_percentage.png)
+
+![Churn Rate by Contract](images/15_churn_rate_by_contract_phase2.png)
+
+![Churn Rate by Tenure](images/16_churn_rate_by_tenure_phase2.png)
+
+![Churn Rate by Monthly Charge](images/17_churn_rate_by_monthly_charge.png)
+
+![Churn Rate by TechSupport](images/18_churn_rate_by_tech_support_phase2.png)
+
 ## Project Status
 
 The main stages of the project are complete:
@@ -211,6 +249,8 @@ The main stages of the project are complete:
 - Model evaluation
 - Business recommendations
 - Project documentation
+
+Now, the adaptive churn prediction phase is now in progress.
 
 ## Project Structure
 
@@ -232,12 +272,18 @@ telco-customer-churn/
 │   ├── 9_churn_rate_by_internet_service.png
 │   ├── 10_churn_rate_by_tech_support.png
 │   ├── 11_monthly_charges_by_churn.png
-│   └── 12_tenure_vs_monthly_charges.png
+│   ├── 12_tenure_vs_monthly_charges.png
+│   ├── 13_churn_class_imbalance.png
+│   ├── 14_churn_class_percentage.png
+│   ├── 15_churn_rate_by_contract_phase2.png
+│   ├── 16_churn_rate_by_tenure_phase2.png
+│   ├── 17_churn_rate_by_monthly_charge.png
+│   └── 18_churn_rate_by_tech_support_phase2.png
 │
-├── Telco_Churn.ipynb
 ├── README.md
+├── requirements.txt
 ├── SUMMARY.md
-└── requirements.txt
+└── Telco_Churn.ipynb
 ```
 
 The repository contains the files used for the completed analysis.
