@@ -189,11 +189,54 @@ Class Weighting was selected because it produced much higher recall while keepin
 
 The test set remained untouched during strategy selection and was used only for the final held-out evaluation of the selected Class Weighting pipeline.
 
+### Part 03 — Model Comparison & Hyperparameter Tuning
+
+**Status: ✅ Complete**
+
+Three classification models were compared using the Class Weighting strategy selected in Part 02:
+
+1. Logistic Regression
+2. Random Forest
+3. XGBoost
+
+Each model used the existing preprocessing pipeline.
+
+Five-fold stratified cross-validation was used for hyperparameter tuning.
+
+PR-AUC was used as the primary tuning metric because the churn class is imbalanced. Precision, recall, F1-score, ROC-AUC, and PR-AUC were also used to compare the tuned models.
+
+The models were ranked using their cross-validated PR-AUC results. The best-performing model was then evaluated once on the untouched test set. XGBoost had the highest cross-validated PR-AUC and was selected for the next stage.
+
+### Cross-Validation Results
+
+| Model               | Precision | Recall |     F1 | ROC-AUC | PR-AUC |
+| ------------------- | --------: | -----: | -----: | ------: | -----: |
+| XGBoost             |    0.5249 | 0.7987 | 0.6334 |  0.8480 | 0.6671 |
+| Logistic Regression |    0.5183 | 0.7967 | 0.6279 |  0.8457 | 0.6623 |
+| Random Forest       |    0.5621 | 0.7124 | 0.6283 |  0.8453 | 0.6602 |
+
+XGBoost had the highest cross-validated PR-AUC and was selected as the best model.
+
+The best XGBoost settings were:
+
+- `learning_rate`: 0.05
+- `max_depth`: 3
+- `n_estimators`: 200
+- `subsample`: 0.8
+
+### Test Set Results
+
+| Model   | Precision | Recall |     F1 | ROC-AUC | PR-AUC |
+| ------- | --------: | -----: | -----: | ------: | -----: |
+| XGBoost |    0.5157 | 0.7914 | 0.6245 |  0.8474 | 0.6599 |
+
+The test set was kept separate during hyperparameter tuning and model selection and was used only for the final evaluation of the selected model.
+
 ### Current Adaptive Project Progress
 
 1. Strengthen Churn Analysis — ✅ Complete
 2. Leakage-Safe Imbalanced Classification Pipeline — ✅ Complete
-3. Model Comparison & Hyperparameter Tuning — Planned
+3. Model Comparison & Hyperparameter Tuning — ✅ Complete
 4. Threshold Tuning & Model Explanation — Planned
 5. Retention Strategy & Executive Report — Planned
 

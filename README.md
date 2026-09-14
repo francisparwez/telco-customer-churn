@@ -16,7 +16,7 @@ pip install -r requirements.txt
 
 ## Methodology
 
-The project was completed in the following steps:
+The project has been developed in the following steps:
 
 1. Loaded and audited the raw dataset.
 2. Cleaned data type and missing value issues.
@@ -273,6 +273,49 @@ The test set was kept separate during strategy selection and was used only for t
 
 ![Precision-Recall Curve](images/20_precision_recall_curve.png)
 
+### Part 03 — Model Comparison & Hyperparameter Tuning
+
+✅ Complete
+
+The third stage compared three classification models using the Class Weighting strategy selected in Part 02:
+
+- Logistic Regression
+- Random Forest
+- XGBoost
+
+Each model used the same preprocessing pipeline and was tuned using five-fold stratified cross-validation.
+
+PR-AUC was used as the main tuning metric because churn is the minority class. Precision, recall, F1-score, ROC-AUC, and PR-AUC were used to compare the tuned models.
+
+### Part 03 Cross-Validation Results
+
+| Model               | Precision | Recall |     F1 | ROC-AUC | PR-AUC |
+| ------------------- | --------: | -----: | -----: | ------: | -----: |
+| XGBoost             |    0.5249 | 0.7987 | 0.6334 |  0.8480 | 0.6671 |
+| Logistic Regression |    0.5183 | 0.7967 | 0.6279 |  0.8457 | 0.6623 |
+| Random Forest       |    0.5621 | 0.7124 | 0.6283 |  0.8453 | 0.6602 |
+
+XGBoost had the highest cross-validated PR-AUC and was selected as the best model for the final test evaluation.
+
+The best XGBoost settings were:
+
+- `learning_rate`: 0.05
+- `max_depth`: 3
+- `n_estimators`: 200
+- `subsample`: 0.8
+
+### Part 03 Test Set Results
+
+| Model   | Precision | Recall |     F1 | ROC-AUC | PR-AUC |
+| ------- | --------: | -----: | -----: | ------: | -----: |
+| XGBoost |    0.5157 | 0.7914 | 0.6245 |  0.8474 | 0.6599 |
+
+The test set was kept separate during hyperparameter tuning and model selection and was used only once for the final evaluation of the selected model.
+
+### Part 03 Visualizations
+
+![Tuned Model Comparison](images/21_tuned_model_comparison.png)
+
 ## Project Status
 
 The original baseline project stages are complete, and the adaptive churn prediction phase is now in progress.
@@ -283,7 +326,7 @@ The original baseline project stages are complete, and the adaptive churn predic
 | ---- | ----------------------------------------------- | ----------- |
 | 01   | Strengthen Churn Analysis                       | ✅ Complete |
 | 02   | Leakage-Safe Imbalanced Classification Pipeline | ✅ Complete |
-| 03   | Model Comparison & Hyperparameter Tuning        | Planned     |
+| 03   | Model Comparison & Hyperparameter Tuning        | ✅ Complete |
 | 04   | Threshold Tuning & Model Explanation            | Planned     |
 | 05   | Retention Strategy & Executive Report           | Planned     |
 
@@ -315,7 +358,8 @@ telco-customer-churn/
 │   ├── 17_churn_rate_by_monthly_charge.png
 │   ├── 18_churn_rate_by_tech_support_phase2.png
 │   ├── 19_imbalance_strategy_comparison.png
-│   └── 20_precision_recall_curve.png
+│   ├── 20_precision_recall_curve.png
+│   └── 21_tuned_model_comparison.png
 │
 ├── README.md
 ├── requirements.txt
