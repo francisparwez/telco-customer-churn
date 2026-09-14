@@ -151,10 +151,48 @@ The `TotalCharges` data quality issue was also reconfirmed. Eleven blank values 
 
 The results from this stage will guide the class imbalance strategy and model evaluation in the next stage.
 
+### Part 02 — Leakage-Safe Imbalanced Classification Pipeline
+
+**Status: ✅ Complete**
+
+The second stage prepared the churn data for imbalanced machine learning.
+
+Three Logistic Regression approaches were compared:
+
+1. No imbalance adjustment
+2. Class weighting
+3. SMOTE
+
+The existing preprocessing was kept inside every modelling pipeline.
+
+SMOTE was also kept inside the pipeline so that synthetic samples were created only from the training portion of each cross-validation fold. This prevented validation data from influencing the training process.
+
+Five-fold stratified cross-validation was used with the following metrics:
+
+- Precision
+- Recall
+- F1-score
+- ROC-AUC
+- PR-AUC
+
+### Cross-Validation Results
+
+| Strategy        | Precision | Recall |     F1 | ROC-AUC | PR-AUC |
+| --------------- | --------: | -----: | -----: | ------: | -----: |
+| No Balancing    |    0.6664 | 0.5365 | 0.5938 |  0.8460 | 0.6634 |
+| Class Weighting |    0.5183 | 0.7967 | 0.6279 |  0.8457 | 0.6623 |
+| SMOTE           |    0.5239 | 0.7846 | 0.6282 |  0.8444 | 0.6608 |
+
+No Balancing achieved the highest PR-AUC by a very small margin.
+
+Class Weighting was selected because it produced much higher recall while keeping ROC-AUC almost unchanged. Since the main purpose of the churn model is to identify customers at risk of leaving, detecting more actual churners is more useful for the next stage.
+
+The test set remained untouched during strategy selection and was used only for the final held-out evaluation of the selected Class Weighting pipeline.
+
 ### Current Adaptive Project Progress
 
 1. Strengthen Churn Analysis — ✅ Complete
-2. Leakage-Safe Imbalanced Classification Pipeline — Planned
+2. Leakage-Safe Imbalanced Classification Pipeline — ✅ Complete
 3. Model Comparison & Hyperparameter Tuning — Planned
 4. Threshold Tuning & Model Explanation — Planned
 5. Retention Strategy & Executive Report — Planned

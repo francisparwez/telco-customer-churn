@@ -237,20 +237,55 @@ The new phase will use these findings to guide class imbalance handling, model c
 
 ![Churn Rate by TechSupport](images/18_churn_rate_by_tech_support_phase2.png)
 
+### Part 02 — Leakage-Safe Imbalanced Classification Pipeline
+
+✅ Complete
+
+The second stage prepared the data for imbalanced classification and compared three approaches using Logistic Regression:
+
+- No imbalance adjustment
+- Class weighting
+- SMOTE
+
+The preprocessing was kept inside each modelling pipeline so that it was fitted separately within each cross-validation training fold.
+
+SMOTE was also applied inside the pipeline, meaning synthetic churn examples were created only from the training portion of each fold. The validation data was kept separate throughout the comparison.
+
+Five-fold stratified cross-validation was used to compare the strategies using precision, recall, F1-score, ROC-AUC, and PR-AUC.
+
+### Part 02 Cross-Validation Results
+
+| Strategy        | Precision | Recall |     F1 | ROC-AUC | PR-AUC |
+| --------------- | --------: | -----: | -----: | ------: | -----: |
+| No Balancing    |    0.6664 | 0.5365 | 0.5938 |  0.8460 | 0.6634 |
+| Class Weighting |    0.5183 | 0.7967 | 0.6279 |  0.8457 | 0.6623 |
+| SMOTE           |    0.5239 | 0.7846 | 0.6282 |  0.8444 | 0.6608 |
+
+No Balancing had the highest PR-AUC by a very small margin. However, Class Weighting produced much higher recall while keeping ROC-AUC almost unchanged.
+
+Because the business goal is to identify customers who are likely to churn, Class Weighting was selected as the imbalance strategy for the next stage.
+
+The test set was kept separate during strategy selection and was used only for the final held-out evaluation of the selected strategy.
+
+### Part 02 Visualizations
+
+![Imbalance Strategy Comparison](images/19_imbalance_strategy_comparison.png)
+
+![Precision-Recall Curve](images/20_precision_recall_curve.png)
+
 ## Project Status
 
-The main stages of the project are complete:
+The original baseline project stages are complete, and the adaptive churn prediction phase is now in progress.
 
-- Data audit
-- Data cleaning and preprocessing
-- EDA
-- Feature engineering
-- Baseline model training
-- Model evaluation
-- Business recommendations
-- Project documentation
+### Adaptive Project Progress
 
-Now, the adaptive churn prediction phase is now in progress.
+| Part | Stage                                           | Status      |
+| ---- | ----------------------------------------------- | ----------- |
+| 01   | Strengthen Churn Analysis                       | ✅ Complete |
+| 02   | Leakage-Safe Imbalanced Classification Pipeline | ✅ Complete |
+| 03   | Model Comparison & Hyperparameter Tuning        | Planned     |
+| 04   | Threshold Tuning & Model Explanation            | Planned     |
+| 05   | Retention Strategy & Executive Report           | Planned     |
 
 ## Project Structure
 
@@ -278,7 +313,9 @@ telco-customer-churn/
 │   ├── 15_churn_rate_by_contract_phase2.png
 │   ├── 16_churn_rate_by_tenure_phase2.png
 │   ├── 17_churn_rate_by_monthly_charge.png
-│   └── 18_churn_rate_by_tech_support_phase2.png
+│   ├── 18_churn_rate_by_tech_support_phase2.png
+│   ├── 19_imbalance_strategy_comparison.png
+│   └── 20_precision_recall_curve.png
 │
 ├── README.md
 ├── requirements.txt
@@ -286,11 +323,11 @@ telco-customer-churn/
 └── Telco_Churn.ipynb
 ```
 
-The repository contains the files used for the completed analysis.
+The repository contains the data, notebook, documentation, and visualizations used throughout the project.
 
 ## Tools
 
-The project uses Python, Pandas, NumPy, Matplotlib, Seaborn, scikit-learn, and Jupyter.
+The project uses Python, Pandas, NumPy, Matplotlib, Seaborn, scikit-learn, imbalanced-learn, XGBoost, and Jupyter.
 
 ## Dataset Note
 
