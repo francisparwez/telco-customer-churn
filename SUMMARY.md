@@ -270,22 +270,86 @@ These importance values describe model behaviour and should not be interpreted a
 
 These results will be used in the final retention strategy and executive summary.
 
+### Part 05 — Retention Strategy & Executive Report
+
+**Status: ✅ Complete**
+
+The final stage translated the model results into a practical retention strategy.
+
+The final model was XGBoost, selected because it achieved the highest cross-validated PR-AUC of 0.6671.
+
+Class Weighting was used to handle the imbalanced churn target.
+
+The selected decision threshold was 0.48.
+
+### Final Model Results
+
+| Measure                |          Result |
+| ---------------------- | --------------: |
+| Model                  |         XGBoost |
+| Imbalance strategy     | Class Weighting |
+| Cross-validated PR-AUC |          0.6671 |
+| Test ROC-AUC           |          0.8474 |
+| Test PR-AUC            |          0.6599 |
+| Selected threshold     |            0.48 |
+| Test Precision at 0.48 |          0.5119 |
+| Test Recall at 0.48    |          0.8075 |
+| Test F1 at 0.48        |          0.6266 |
+
+The model is intended to prioritise higher-risk customers for retention outreach.
+
+The strongest model features were:
+
+- `is_month_to_month`
+- `InternetService_Fiber optic`
+- `OnlineSecurity_No`
+- `TechSupport_No`
+- `StreamingMovies_Yes`
+
+The main retention recommendations are:
+
+1. Prioritise customers above the 0.48 churn-probability threshold.
+2. Encourage month-to-month customers to consider longer contracts.
+3. Improve onboarding and support for newer customers.
+4. Review support and service options for customers without TechSupport or OnlineSecurity.
+5. Monitor Fiber optic customers for service and pricing concerns.
+6. Use targeted retention actions instead of automatically giving discounts to every high-risk customer.
+
+The expected trade-off is that a lower threshold captures more likely churners but also increases unnecessary outreach.
+
+The 3-to-1 business cost assumption used during threshold selection is illustrative and should be replaced with actual customer value and retention campaign costs before financial decisions are made.
+
+### Executive Summary
+
+The completed project provides an end-to-end churn modelling workflow from data audit and EDA through imbalance handling, model tuning, threshold selection, feature importance, and business recommendations.
+
+The final recommendation is to use XGBoost with Class Weighting and a 0.48 decision threshold as the starting point for a controlled retention pilot.
+
+The model should be used to prioritise customers, while the final retention action should be based on customer context and the measured effectiveness of each intervention.
+
 ### Current Adaptive Project Progress
 
 1. Strengthen Churn Analysis — ✅ Complete
 2. Leakage-Safe Imbalanced Classification Pipeline — ✅ Complete
 3. Model Comparison & Hyperparameter Tuning — ✅ Complete
 4. Threshold Tuning & Model Explanation — ✅ Complete
-5. Retention Strategy & Executive Report — Planned
+5. Retention Strategy & Executive Report — ✅ Complete
 
 ## Project Status
 
-The main analysis stages are complete:
+The full Telco Customer Churn project is complete.
+
+The project covers:
 
 - Data audit
 - Data cleaning and preprocessing
-- EDA
+- Exploratory data analysis
 - Feature engineering
-- Baseline model training
-- Model evaluation
-- Business recommendations
+- Baseline modelling
+- Class imbalance handling
+- Model comparison
+- Hyperparameter tuning
+- Decision threshold tuning
+- Feature importance
+- Retention decision strategy
+- Executive reporting

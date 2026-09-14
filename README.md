@@ -369,9 +369,78 @@ The feature importance values describe how much the model relied on each transfo
 
 ![Precision-Recall Curve](images/25_precision_recall_curve_part4.png)
 
+### Part 05 — Retention Strategy & Executive Report
+
+✅ Complete
+
+The final stage translated the churn model into a practical retention decision process.
+
+The selected model was XGBoost, which achieved the highest cross-validated PR-AUC among the three tuned models.
+
+The final modelling setup used Class Weighting to handle the imbalanced churn target.
+
+### Final Model Results
+
+| Measure                |          Result |
+| ---------------------- | --------------: |
+| Model                  |         XGBoost |
+| Imbalance strategy     | Class Weighting |
+| Cross-validated PR-AUC |          0.6671 |
+| Test ROC-AUC           |          0.8474 |
+| Test PR-AUC            |          0.6599 |
+| Selected threshold     |            0.48 |
+| Test Precision at 0.48 |          0.5119 |
+| Test Recall at 0.48    |          0.8075 |
+| Test F1 at 0.48        |          0.6266 |
+
+### Retention Decision
+
+Customers with predicted churn probability of 0.48 or higher are treated as high-risk customers for retention outreach.
+
+The model should be used to prioritise customers rather than automatically giving every high-risk customer a discount.
+
+Retention actions should be matched to the customer's profile and likely churn risk.
+
+### Main Churn Drivers
+
+The strongest XGBoost features were:
+
+- `is_month_to_month`
+- `InternetService_Fiber optic`
+- `OnlineSecurity_No`
+- `TechSupport_No`
+- `StreamingMovies_Yes`
+
+The strongest feature was `is_month_to_month`.
+
+These features describe model behaviour and should not be interpreted as proof of causation.
+
+### Retention Recommendations
+
+1. Prioritise high-risk customers for proactive retention outreach.
+2. Encourage month-to-month customers to consider longer contracts.
+3. Improve onboarding and early support for newer customers.
+4. Review support and service options for customers without TechSupport or OnlineSecurity.
+5. Monitor Fiber optic customers and investigate service or pricing issues.
+6. Use targeted retention offers rather than giving discounts to every high-risk customer.
+
+The selected threshold reflects an illustrative business cost assumption in which missing a churner is three times more costly than contacting a customer who would have stayed.
+
+The company should replace this assumption with actual customer value and retention campaign costs before using the model for financial decisions.
+
+### Executive Summary
+
+The final project result is a churn prediction workflow that combines class imbalance handling, model comparison, threshold tuning, and business interpretation.
+
+The model can help the telecom company focus retention resources on customers with a higher predicted probability of churn.
+
+The recommended starting point is XGBoost with Class Weighting and a 0.48 decision threshold, followed by a controlled retention pilot to measure which outreach actions actually reduce churn.
+
 ## Project Status
 
-The original baseline project stages are complete, and the adaptive churn prediction phase is now in progress.
+The original baseline project and the adaptive churn prediction phase are complete.
+
+The final project now includes data audit, cleaning, EDA, feature engineering, imbalance handling, model comparison, hyperparameter tuning, decision threshold tuning, feature importance analysis, and a final retention strategy.
 
 ### Adaptive Project Progress
 
@@ -381,7 +450,7 @@ The original baseline project stages are complete, and the adaptive churn predic
 | 02   | Leakage-Safe Imbalanced Classification Pipeline | ✅ Complete |
 | 03   | Model Comparison & Hyperparameter Tuning        | ✅ Complete |
 | 04   | Threshold Tuning & Model Explanation            | ✅ Complete |
-| 05   | Retention Strategy & Executive Report           | Planned     |
+| 05   | Retention Strategy & Executive Report           | ✅ Complete |
 
 ## Project Structure
 
@@ -420,8 +489,9 @@ telco-customer-churn/
 │   └── 26_xgboost_feature_importance.png
 │
 ├── README.md
-├── requirements.txt
 ├── SUMMARY.md
+├── EXECUTIVE_SUMMARY.md
+├── requirements.txt
 └── Telco_Churn.ipynb
 ```
 
