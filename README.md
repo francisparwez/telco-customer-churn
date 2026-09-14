@@ -316,6 +316,59 @@ The test set was kept separate during hyperparameter tuning and model selection 
 
 ![Tuned Model Comparison](images/21_tuned_model_comparison.png)
 
+### Part 04 — Decision Threshold & Model Explanation
+
+✅ Complete
+
+The fourth stage investigated the decision threshold for the selected XGBoost model instead of automatically using the default 0.50 cutoff.
+
+Out-of-fold training predictions were used to evaluate different thresholds while keeping the test set untouched during threshold selection.
+
+A working business assumption treated a missed churner as three times more costly than an unnecessary retention offer.
+
+### Threshold Comparison
+
+| Threshold | Precision | Recall |     F1 | False Positives | False Negatives | Business Cost |
+| --------: | --------: | -----: | -----: | --------------: | --------------: | ------------: |
+|      0.50 |    0.5248 | 0.7987 | 0.6334 |            1081 |             301 |          1984 |
+|      0.48 |    0.5157 | 0.8140 | 0.6314 |            1143 |             278 |          1977 |
+
+The selected threshold was 0.48. Compared with the default 0.50 threshold, it increased recall from 0.7987 to 0.8140 and reduced the estimated business cost from 1984 to 1977 under the working assumption.
+
+### Final Test Result at Selected Threshold
+
+| Threshold | Precision | Recall |     F1 |
+| --------: | --------: | -----: | -----: |
+|      0.48 |    0.5119 | 0.8075 | 0.6266 |
+
+### Feature Importance
+
+The XGBoost feature importance analysis identified the main transformed features used by the model when predicting churn.
+
+The most important features were:
+
+| Feature                       | Importance |
+| ----------------------------- | ---------: |
+| `is_month_to_month`           |     0.4047 |
+| `InternetService_Fiber optic` |     0.0759 |
+| `OnlineSecurity_No`           |     0.0750 |
+| `TechSupport_No`              |     0.0548 |
+| `StreamingMovies_Yes`         |     0.0349 |
+
+The feature importance values describe how much the model relied on each transformed feature. They should not be interpreted as proof that a feature directly causes churn.
+
+![XGBoost Feature Importance](images/26_xgboost_feature_importance.png)
+
+### Part 04 Visualizations
+
+![Threshold Trade-Off](images/22_threshold_tradeoff.png)
+
+![Business Cost by Threshold](images/23_business_cost_by_threshold.png)
+
+![ROC Curve](images/24_roc_curve_part4.png)
+
+![Precision-Recall Curve](images/25_precision_recall_curve_part4.png)
+
 ## Project Status
 
 The original baseline project stages are complete, and the adaptive churn prediction phase is now in progress.
@@ -327,7 +380,7 @@ The original baseline project stages are complete, and the adaptive churn predic
 | 01   | Strengthen Churn Analysis                       | ✅ Complete |
 | 02   | Leakage-Safe Imbalanced Classification Pipeline | ✅ Complete |
 | 03   | Model Comparison & Hyperparameter Tuning        | ✅ Complete |
-| 04   | Threshold Tuning & Model Explanation            | Planned     |
+| 04   | Threshold Tuning & Model Explanation            | ✅ Complete |
 | 05   | Retention Strategy & Executive Report           | Planned     |
 
 ## Project Structure
@@ -359,7 +412,12 @@ telco-customer-churn/
 │   ├── 18_churn_rate_by_tech_support_phase2.png
 │   ├── 19_imbalance_strategy_comparison.png
 │   ├── 20_precision_recall_curve.png
-│   └── 21_tuned_model_comparison.png
+│   ├── 21_tuned_model_comparison.png
+│   ├── 22_threshold_tradeoff.png
+│   ├── 23_business_cost_by_threshold.png
+│   ├── 24_roc_curve_part4.png
+│   ├── 25_precision_recall_curve_part4.png
+│   └── 26_xgboost_feature_importance.png
 │
 ├── README.md
 ├── requirements.txt

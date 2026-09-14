@@ -232,12 +232,50 @@ The best XGBoost settings were:
 
 The test set was kept separate during hyperparameter tuning and model selection and was used only for the final evaluation of the selected model.
 
+### Part 04 — Decision Threshold & Model Explanation
+
+**Status: ✅ Complete**
+
+The fourth stage focused on choosing a practical classification threshold for the selected XGBoost model.
+
+Instead of automatically using the default 0.50 threshold, out-of-fold training predictions were used to evaluate a range of thresholds.
+
+A working business cost assumption was used:
+
+- Missing a customer who churns = cost of 3
+- Incorrectly targeting a customer who stays = cost of 1
+
+The selected threshold was the threshold with the lowest estimated business cost under this assumption.
+
+### Threshold Comparison
+
+| Threshold | Precision | Recall |     F1 | False Positives | False Negatives | Business Cost |
+| --------: | --------: | -----: | -----: | --------------: | --------------: | ------------: |
+|      0.50 |    0.5248 | 0.7987 | 0.6334 |            1081 |             301 |          1984 |
+|      0.48 |    0.5157 | 0.8140 | 0.6314 |            1143 |             278 |          1977 |
+
+### Final Test Result at Selected Threshold
+
+| Threshold | Precision | Recall |     F1 |
+| --------: | --------: | -----: | -----: |
+|      0.48 |    0.5119 | 0.8075 | 0.6266 |
+
+The ROC and precision-recall curves were used to examine model behaviour across thresholds.
+
+The selected threshold was 0.48. Compared with the default 0.50 threshold, recall increased from 0.7987 to 0.8140 while the estimated business cost decreased from 1984 to 1977 under the working cost assumption.
+
+XGBoost feature importance identified `is_month_to_month` as the strongest model feature, followed by `InternetService_Fiber optic`, `OnlineSecurity_No`, `TechSupport_No`, and `StreamingMovies_Yes`.
+
+These importance values describe model behaviour and should not be interpreted as proof of causation.
+
+These results will be used in the final retention strategy and executive summary.
+
 ### Current Adaptive Project Progress
 
 1. Strengthen Churn Analysis — ✅ Complete
 2. Leakage-Safe Imbalanced Classification Pipeline — ✅ Complete
 3. Model Comparison & Hyperparameter Tuning — ✅ Complete
-4. Threshold Tuning & Model Explanation — Planned
+4. Threshold Tuning & Model Explanation — ✅ Complete
 5. Retention Strategy & Executive Report — Planned
 
 ## Project Status
